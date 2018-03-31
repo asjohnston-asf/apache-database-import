@@ -1,22 +1,22 @@
-create table asfadm.request (
-  id integer,
-  host VARCHAR2(100),
-  path VARCHAR2(300),
-  ip_address VARCHAR2(30),
-  request_time DATE,
-  request_method VARCHAR2(10),
-  user_agent VARCHAR2(500),
-  response_size INTEGER,
-  response_code INTEGER,
-  constraint pk_request primary key (id)
+create schema api;
+
+create table api.requests
+(
+  id bigint primary key,
+  host varchar(100),
+  path varchar(300),
+  ip_address varchar(30),
+  request_time timestamp,
+  request_method varchar(10),
+  user_agent varchar(500),
+  response_size bigint,
+  response_code bigint
 );
 
-create table asfadm.request_parm (
-  id INTEGER,
-  parm_name VARCHAR2(500),
-  parm_value VARCHAR2(500)
+create table api.request_parm (
+  request_id bigint,
+  parm_name varchar(500),
+  parm_value varchar(500)
 );
 
-create index request_parm_id_idx on asfadm.request_parm(id);
-create public synonym request for asfadm.request;
-create public synonym request_parm for asfadm.request_parm;
+create index request_id on api.request_parm(request_id);
