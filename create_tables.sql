@@ -19,4 +19,9 @@ create table api.request_parm (
   parm_value varchar(500)
 );
 
+create table api.addresses (
+  ip_address varchar(30) primary key,
+  domain_name varchar(100)
+);
+
 create index request_id on api.request_parm(request_id);
